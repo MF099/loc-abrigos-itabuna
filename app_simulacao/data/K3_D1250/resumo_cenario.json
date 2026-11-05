@@ -1,0 +1,15 @@
+{
+  "k": 3,
+  "d_max": 1250.0,
+  "status": "Optimal",
+  "demanda_total": 7192.06,
+  "total_acolhidos": 1314.7,
+  "deficit_total": 5877.36,
+  "taxa_cobertura_pct": 18.28,
+  "abrigos_ativados_qtd": 3,
+  "abrigos_ativados_nomes": [
+    "COLEGIO ESTADUAL PROFESSOR ADEUM HILARIO SAUER TEMPO INTEGRAL",
+    "COLEGIO ESTADUAL INACIO TOSTA FILHO TEMPO INTEGRAL",
+    "GRUPO ESCOLAR PROFESSOR ROBERTO SANTOS"
+  ]
+}

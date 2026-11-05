@@ -1,0 +1,17 @@
+{
+  "k": 5,
+  "d_max": 1250.0,
+  "status": "Optimal",
+  "demanda_total": 7192.06,
+  "total_acolhidos": 1802.16,
+  "deficit_total": 5389.9,
+  "taxa_cobertura_pct": 25.06,
+  "abrigos_ativados_qtd": 5,
+  "abrigos_ativados_nomes": [
+    "ESCOLA MUNICIPAL LIONS CLUB DE ITABUNA CENTRO",
+    "COLEGIO ESTADUAL PROFESSOR ADEUM HILARIO SAUER TEMPO INTEGRAL",
+    "COLEGIO ESTADUAL INACIO TOSTA FILHO TEMPO INTEGRAL",
+    "GRUPO ESCOLAR PROFESSOR ROBERTO SANTOS",
+    "CERM - CENTRO DE ESTUDO RONALDO MENDES"
+  ]
+}

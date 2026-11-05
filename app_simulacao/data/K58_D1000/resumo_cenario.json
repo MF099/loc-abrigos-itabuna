@@ -1,0 +1,14 @@
+{
+  "k": 58,
+  "d_max": 1000.0,
+  "status": "Optimal",
+  "demanda_total": 7192.06,
+  "total_acolhidos": 410.0,
+  "deficit_total": 6782.06,
+  "taxa_cobertura_pct": 5.7,
+  "abrigos_ativados_qtd": 2,
+  "abrigos_ativados_nomes": [
+    "CERM - CENTRO DE ESTUDO RONALDO MENDES",
+    "CENTRO EDUCACIONAL DE ENSINO INFANTIL E FUNDAMENTAL MUNDO DA CRIANCA"
+  ]
+}

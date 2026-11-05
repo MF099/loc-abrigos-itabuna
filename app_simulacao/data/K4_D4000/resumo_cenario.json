@@ -1,0 +1,16 @@
+{
+  "k": 4,
+  "d_max": 4000.0,
+  "status": "Optimal",
+  "demanda_total": 7192.06,
+  "total_acolhidos": 3494.94,
+  "deficit_total": 3697.12,
+  "taxa_cobertura_pct": 48.59,
+  "abrigos_ativados_qtd": 4,
+  "abrigos_ativados_nomes": [
+    "COLEGIO ESTADUAL PROFESSOR ADEUM HILARIO SAUER TEMPO INTEGRAL",
+    "GRUPO ESCOLAR PROF EVERALDO CARDOSO",
+    "ESCOLA MUNICIPAL FLAVIO JOSE SIMOES COSTA",
+    "ESCOLA MUNICIPAL LUIZ VIANA FILHO"
+  ]
+}

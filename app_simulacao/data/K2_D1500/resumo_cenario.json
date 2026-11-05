@@ -1,0 +1,14 @@
+{
+  "k": 2,
+  "d_max": 1500.0,
+  "status": "Optimal",
+  "demanda_total": 7192.06,
+  "total_acolhidos": 1591.0,
+  "deficit_total": 5601.06,
+  "taxa_cobertura_pct": 22.12,
+  "abrigos_ativados_qtd": 2,
+  "abrigos_ativados_nomes": [
+    "COLEGIO ESTADUAL PROFESSOR ADEUM HILARIO SAUER TEMPO INTEGRAL",
+    "GRUPO ESCOLAR PROF EVERALDO CARDOSO"
+  ]
+}

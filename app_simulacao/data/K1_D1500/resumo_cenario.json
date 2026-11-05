@@ -1,0 +1,13 @@
+{
+  "k": 1,
+  "d_max": 1500.0,
+  "status": "Optimal",
+  "demanda_total": 7192.06,
+  "total_acolhidos": 946.0,
+  "deficit_total": 6246.06,
+  "taxa_cobertura_pct": 13.15,
+  "abrigos_ativados_qtd": 1,
+  "abrigos_ativados_nomes": [
+    "COLEGIO ESTADUAL PROFESSOR ADEUM HILARIO SAUER TEMPO INTEGRAL"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+"type": "FeatureCollection",
+"name": "abrigos_selecionados",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::31984" } },
+"features": [
+{ "type": "Feature", "properties": { "no_escola": "CERM - CENTRO DE ESTUDO RONALDO MENDES", "capacidade": 265.0, "total_abrigado": 265.0, "taxa_ocupacao_pct": 100.0, "margem": "N" }, "geometry": { "type": "Point", "coordinates": [ 469722.35785062139621, 8364607.173450713977218 ] } },
+{ "type": "Feature", "properties": { "no_escola": "CENTRO EDUCACIONAL DE ENSINO INFANTIL E FUNDAMENTAL MUNDO DA CRIANCA", "capacidade": 145.0, "total_abrigado": 145.0, "taxa_ocupacao_pct": 100.0, "margem": "S" }, "geometry": { "type": "Point", "coordinates": [ 471384.044905892398674, 8364235.193698490038514 ] } }
+]
+}

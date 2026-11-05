@@ -1,0 +1,14 @@
+{
+"type": "FeatureCollection",
+"name": "abrigos_selecionados",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "no_escola": "CENTRO EDUCACIONAL SAO FRANCISCO DE ASSIS", "id_escola": "29304261", "in25_edu02": 149, "x": 471687.235, "y": 8364491.055, "margem": "S", "pessoas_abrigadas": 149.0, "capacidade_vagas": 149.0, "taxa_ocupacao_pct": 100.0, "status_aberto": 1 }, "geometry": { "type": "Point", "coordinates": [ -39.26310472, -14.79355391 ] } },
+{ "type": "Feature", "properties": { "no_escola": "ESCOLA MUNICIPAL LIONS CLUB DE ITABUNA CENTRO", "id_escola": "29304873", "in25_edu02": 321, "x": 469524.4719, "y": 8365013.377, "margem": "N", "pessoas_abrigadas": 222.46, "capacidade_vagas": 321.0, "taxa_ocupacao_pct": 69.3, "status_aberto": 1 }, "geometry": { "type": "Point", "coordinates": [ -39.28319654, -14.78880765 ] } },
+{ "type": "Feature", "properties": { "no_escola": "COLEGIO ESTADUAL PROFESSOR ADEUM HILARIO SAUER TEMPO INTEGRAL", "id_escola": "29306205", "in25_edu02": 946, "x": 470282.8077, "y": 8362365.1, "margem": "S", "pessoas_abrigadas": 685.62, "capacidade_vagas": 946.0, "taxa_ocupacao_pct": 72.48, "status_aberto": 1 }, "geometry": { "type": "Point", "coordinates": [ -39.27618, -14.81276 ] } },
+{ "type": "Feature", "properties": { "no_escola": "COLEGIO ESTADUAL INACIO TOSTA FILHO TEMPO INTEGRAL", "id_escola": "29306264", "in25_edu02": 576, "x": 471043.0822, "y": 8366345.546, "margem": "N", "pessoas_abrigadas": 318.08, "capacidade_vagas": 576.0, "taxa_ocupacao_pct": 55.22, "status_aberto": 1 }, "geometry": { "type": "Point", "coordinates": [ -39.26907, -14.77678 ] } },
+{ "type": "Feature", "properties": { "no_escola": "GRUPO ESCOLAR PROFESSOR ROBERTO SANTOS", "id_escola": "29306396", "in25_edu02": 311, "x": 469444.589, "y": 8361820.135, "margem": "S", "pessoas_abrigadas": 311.0, "capacidade_vagas": 311.0, "taxa_ocupacao_pct": 100.0, "status_aberto": 1 }, "geometry": { "type": "Point", "coordinates": [ -39.28397643, -14.8176777 ] } },
+{ "type": "Feature", "properties": { "no_escola": "CERM - CENTRO DE ESTUDO RONALDO MENDES", "id_escola": "29478448", "in25_edu02": 265, "x": 469722.3579, "y": 8364607.173, "margem": "N", "pessoas_abrigadas": 265.0, "capacidade_vagas": 265.0, "taxa_ocupacao_pct": 100.0, "status_aberto": 1 }, "geometry": { "type": "Point", "coordinates": [ -39.281362415630348, -14.792482502132597 ] } },
+{ "type": "Feature", "properties": { "no_escola": "ESCOLA MUNICIPAL DR ANTONIO MENEZES FILHO", "id_escola": "29304601", "in25_edu02": 172, "x": 471491.3616, "y": 8364399.709, "margem": "S", "pessoas_abrigadas": 172.0, "capacidade_vagas": 172.0, "taxa_ocupacao_pct": 100.0, "status_aberto": 1 }, "geometry": { "type": "Point", "coordinates": [ -39.26492592, -14.79437771 ] } }
+]
+}

@@ -1,0 +1,13 @@
+{
+  "k": 1,
+  "d_max": 4000.0,
+  "status": "Optimal",
+  "demanda_total": 7192.06,
+  "total_acolhidos": 1294.94,
+  "deficit_total": 5897.12,
+  "taxa_cobertura_pct": 18.01,
+  "abrigos_ativados_qtd": 1,
+  "abrigos_ativados_nomes": [
+    "ESCOLA MUNICIPAL FLAVIO JOSE SIMOES COSTA"
+  ]
+}

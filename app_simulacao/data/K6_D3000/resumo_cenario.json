@@ -1,0 +1,18 @@
+{
+  "k": 6,
+  "d_max": 3000.0,
+  "status": "Optimal",
+  "demanda_total": 7192.06,
+  "total_acolhidos": 3729.56,
+  "deficit_total": 3462.5,
+  "taxa_cobertura_pct": 51.86,
+  "abrigos_ativados_qtd": 6,
+  "abrigos_ativados_nomes": [
+    "COOPERATIVA EDUCACIONAL DE ITABUNA",
+    "COLEGIO ESTADUAL PROFESSOR ADEUM HILARIO SAUER TEMPO INTEGRAL",
+    "COLEGIO ESTADUAL INACIO TOSTA FILHO TEMPO INTEGRAL",
+    "GRUPO ESCOLAR PROF EVERALDO CARDOSO",
+    "ESCOLA MUNICIPAL FLAVIO JOSE SIMOES COSTA",
+    "ESCOLA MUNICIPAL LUIZ VIANA FILHO"
+  ]
+}

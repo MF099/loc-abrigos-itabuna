@@ -1,0 +1,14 @@
+{
+  "k": 2,
+  "d_max": 4000.0,
+  "status": "Optimal",
+  "demanda_total": 7192.06,
+  "total_acolhidos": 2240.94,
+  "deficit_total": 4951.12,
+  "taxa_cobertura_pct": 31.16,
+  "abrigos_ativados_qtd": 2,
+  "abrigos_ativados_nomes": [
+    "COLEGIO ESTADUAL PROFESSOR ADEUM HILARIO SAUER TEMPO INTEGRAL",
+    "ESCOLA MUNICIPAL FLAVIO JOSE SIMOES COSTA"
+  ]
+}

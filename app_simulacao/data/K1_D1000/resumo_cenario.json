@@ -1,0 +1,13 @@
+{
+  "k": 1,
+  "d_max": 1000.0,
+  "status": "Optimal",
+  "demanda_total": 7192.06,
+  "total_acolhidos": 265.0,
+  "deficit_total": 6927.06,
+  "taxa_cobertura_pct": 3.68,
+  "abrigos_ativados_qtd": 1,
+  "abrigos_ativados_nomes": [
+    "CERM - CENTRO DE ESTUDO RONALDO MENDES"
+  ]
+}

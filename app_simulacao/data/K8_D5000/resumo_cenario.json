@@ -1,0 +1,20 @@
+{
+  "k": 8,
+  "d_max": 5000.0,
+  "status": "Optimal",
+  "demanda_total": 7192.06,
+  "total_acolhidos": 5052.71,
+  "deficit_total": 2139.35,
+  "taxa_cobertura_pct": 70.25,
+  "abrigos_ativados_qtd": 8,
+  "abrigos_ativados_nomes": [
+    "ESCOLA MUNICIPAL VILA ANALIA",
+    "COLEGIO ESTADUAL PROFESSOR ADEUM HILARIO SAUER TEMPO INTEGRAL",
+    "COLEGIO ESTADUAL INACIO TOSTA FILHO TEMPO INTEGRAL",
+    "GRUPO ESCOLAR PROF EVERALDO CARDOSO",
+    "GRUPO ESCOLAR PROFESSOR ROBERTO SANTOS",
+    "ESCOLA MUNICIPAL FLAVIO JOSE SIMOES COSTA",
+    "ESCOLA MUNICIPAL LUIZ VIANA FILHO",
+    "ESCOLA MUNICIPAL BRASILIA BARAUNA DE ALMEIDA"
+  ]
+}

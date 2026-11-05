@@ -1,0 +1,19 @@
+{
+  "k": 7,
+  "d_max": 1250.0,
+  "status": "Optimal",
+  "demanda_total": 7192.06,
+  "total_acolhidos": 2123.16,
+  "deficit_total": 5068.9,
+  "taxa_cobertura_pct": 29.52,
+  "abrigos_ativados_qtd": 7,
+  "abrigos_ativados_nomes": [
+    "CENTRO EDUCACIONAL SAO FRANCISCO DE ASSIS",
+    "ESCOLA MUNICIPAL LIONS CLUB DE ITABUNA CENTRO",
+    "COLEGIO ESTADUAL PROFESSOR ADEUM HILARIO SAUER TEMPO INTEGRAL",
+    "COLEGIO ESTADUAL INACIO TOSTA FILHO TEMPO INTEGRAL",
+    "GRUPO ESCOLAR PROFESSOR ROBERTO SANTOS",
+    "CERM - CENTRO DE ESTUDO RONALDO MENDES",
+    "ESCOLA MUNICIPAL DR ANTONIO MENEZES FILHO"
+  ]
+}

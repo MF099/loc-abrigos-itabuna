@@ -1,0 +1,10 @@
+{
+"type": "FeatureCollection",
+"name": "fluxos_alocacao",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "id_setor": "291480205000335", "no_escola": "COLEGIO ESTADUAL INACIO TOSTA FILHO TEMPO INTEGRAL", "margem": "N", "pessoas_alocadas": 318.08, "distancia_caminhada_m": 1116.81, "distancia_reta_m": 937.24 }, "geometry": { "type": "LineString", "coordinates": [ [ -39.269320803092384, -14.785250400575032 ], [ -39.26907, -14.77678 ] ] } },
+{ "type": "Feature", "properties": { "id_setor": "291480205000470", "no_escola": "GRUPO ESCOLAR PROFESSOR ROBERTO SANTOS", "margem": "S", "pessoas_alocadas": 311.0, "distancia_caminhada_m": 1229.56, "distancia_reta_m": 833.83 }, "geometry": { "type": "LineString", "coordinates": [ [ -39.29007742173853, -14.813029356879449 ], [ -39.28397643, -14.8176777 ] ] } },
+{ "type": "Feature", "properties": { "id_setor": "291480205000471", "no_escola": "COLEGIO ESTADUAL PROFESSOR ADEUM HILARIO SAUER TEMPO INTEGRAL", "margem": "S", "pessoas_alocadas": 685.62, "distancia_caminhada_m": 1241.19, "distancia_reta_m": 823.79 }, "geometry": { "type": "LineString", "coordinates": [ [ -39.281792346585753, -14.807694170087803 ], [ -39.27618, -14.81276 ] ] } }
+]
+}

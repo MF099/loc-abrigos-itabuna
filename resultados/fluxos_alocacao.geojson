@@ -1,0 +1,9 @@
+{
+"type": "FeatureCollection",
+"name": "fluxos_alocacao",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::31984" } },
+"features": [
+{ "type": "Feature", "properties": { "setor_id": "291480205000003", "escola": "CERM - CENTRO DE ESTUDO RONALDO MENDES", "pessoas_alocadas": 265.0, "distancia_m": 803.1 }, "geometry": { "type": "LineString", "coordinates": [ [ 470179.037959674489684, 8364071.599438942968845 ], [ 469722.35785062139621, 8364607.173450713977218 ] ] } },
+{ "type": "Feature", "properties": { "setor_id": "291480205000318", "escola": "CENTRO EDUCACIONAL DE ENSINO INFANTIL E FUNDAMENTAL MUNDO DA CRIANCA", "pessoas_alocadas": 145.0, "distancia_m": 972.8 }, "geometry": { "type": "LineString", "coordinates": [ [ 470913.208415512053762, 8364870.482821221463382 ], [ 471384.044905892398674, 8364235.193698490038514 ] ] } }
+]
+}

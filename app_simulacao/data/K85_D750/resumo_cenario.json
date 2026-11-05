@@ -1,0 +1,11 @@
+{
+  "k": 85,
+  "d_max": 750.0,
+  "status": "Optimal",
+  "demanda_total": 7192.06,
+  "total_acolhidos": 0.0,
+  "deficit_total": 7192.06,
+  "taxa_cobertura_pct": 0.0,
+  "abrigos_ativados_qtd": 0,
+  "abrigos_ativados_nomes": []
+}

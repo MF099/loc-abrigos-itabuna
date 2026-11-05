@@ -1,0 +1,18 @@
+{
+  "k": 6,
+  "d_max": 1500.0,
+  "status": "Optimal",
+  "demanda_total": 7192.06,
+  "total_acolhidos": 3088.02,
+  "deficit_total": 4104.04,
+  "taxa_cobertura_pct": 42.94,
+  "abrigos_ativados_qtd": 6,
+  "abrigos_ativados_nomes": [
+    "COOPERATIVA EDUCACIONAL DE ITABUNA",
+    "ESCOLA MUNICIPAL LIONS CLUB DE ITABUNA CENTRO",
+    "COLEGIO ESTADUAL PROFESSOR ADEUM HILARIO SAUER TEMPO INTEGRAL",
+    "COLEGIO ESTADUAL INACIO TOSTA FILHO TEMPO INTEGRAL",
+    "GRUPO ESCOLAR PROF EVERALDO CARDOSO",
+    "ESCOLA MUNICIPAL LUIZ VIANA FILHO"
+  ]
+}

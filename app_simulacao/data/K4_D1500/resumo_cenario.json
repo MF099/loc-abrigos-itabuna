@@ -1,0 +1,16 @@
+{
+  "k": 4,
+  "d_max": 1500.0,
+  "status": "Optimal",
+  "demanda_total": 7192.06,
+  "total_acolhidos": 2445.58,
+  "deficit_total": 4746.48,
+  "taxa_cobertura_pct": 34.0,
+  "abrigos_ativados_qtd": 4,
+  "abrigos_ativados_nomes": [
+    "COOPERATIVA EDUCACIONAL DE ITABUNA",
+    "COLEGIO ESTADUAL PROFESSOR ADEUM HILARIO SAUER TEMPO INTEGRAL",
+    "COLEGIO ESTADUAL INACIO TOSTA FILHO TEMPO INTEGRAL",
+    "GRUPO ESCOLAR PROF EVERALDO CARDOSO"
+  ]
+}

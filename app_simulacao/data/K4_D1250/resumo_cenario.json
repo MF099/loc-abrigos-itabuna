@@ -1,0 +1,16 @@
+{
+  "k": 4,
+  "d_max": 1250.0,
+  "status": "Optimal",
+  "demanda_total": 7192.06,
+  "total_acolhidos": 1579.7,
+  "deficit_total": 5612.36,
+  "taxa_cobertura_pct": 21.96,
+  "abrigos_ativados_qtd": 4,
+  "abrigos_ativados_nomes": [
+    "COLEGIO ESTADUAL PROFESSOR ADEUM HILARIO SAUER TEMPO INTEGRAL",
+    "COLEGIO ESTADUAL INACIO TOSTA FILHO TEMPO INTEGRAL",
+    "GRUPO ESCOLAR PROFESSOR ROBERTO SANTOS",
+    "CERM - CENTRO DE ESTUDO RONALDO MENDES"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+"type": "FeatureCollection",
+"name": "fluxos_alocacao",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "id_setor": "291480205000032", "no_escola": "COLEGIO ESTADUAL PROFESSOR ADEUM HILARIO SAUER TEMPO INTEGRAL", "margem": "S", "pessoas_alocadas": 390.4, "distancia_caminhada_m": 1383.59, "distancia_reta_m": 1205.44 }, "geometry": { "type": "LineString", "coordinates": [ [ -39.27820144329273, -14.802040151361874 ], [ -39.27618, -14.81276 ] ] } },
+{ "type": "Feature", "properties": { "id_setor": "291480205000392", "no_escola": "COLEGIO ESTADUAL PROFESSOR ADEUM HILARIO SAUER TEMPO INTEGRAL", "margem": "S", "pessoas_alocadas": 271.81, "distancia_caminhada_m": 1771.42, "distancia_reta_m": 1476.29 }, "geometry": { "type": "LineString", "coordinates": [ [ -39.276227418292699, -14.799412519867374 ], [ -39.27618, -14.81276 ] ] } },
+{ "type": "Feature", "properties": { "id_setor": "291480205000432", "no_escola": "COLEGIO ESTADUAL PROFESSOR ADEUM HILARIO SAUER TEMPO INTEGRAL", "margem": "S", "pessoas_alocadas": 220.74, "distancia_caminhada_m": 1317.93, "distancia_reta_m": 1046.56 }, "geometry": { "type": "LineString", "coordinates": [ [ -39.285294517140571, -14.809457373682754 ], [ -39.27618, -14.81276 ] ] } },
+{ "type": "Feature", "properties": { "id_setor": "291480205000470", "no_escola": "COLEGIO ESTADUAL PROFESSOR ADEUM HILARIO SAUER TEMPO INTEGRAL", "margem": "S", "pessoas_alocadas": 63.05, "distancia_caminhada_m": 1912.07, "distancia_reta_m": 1495.68 }, "geometry": { "type": "LineString", "coordinates": [ [ -39.29007742173853, -14.813029356879449 ], [ -39.27618, -14.81276 ] ] } },
+{ "type": "Feature", "properties": { "id_setor": "291480205000471", "no_escola": "GRUPO ESCOLAR PROF EVERALDO CARDOSO", "margem": "S", "pessoas_alocadas": 645.0, "distancia_caminhada_m": 1371.33, "distancia_reta_m": 1025.8 }, "geometry": { "type": "LineString", "coordinates": [ [ -39.281792346585753, -14.807694170087803 ], [ -39.27239929000001, -14.8092784 ] ] } }
+]
+}

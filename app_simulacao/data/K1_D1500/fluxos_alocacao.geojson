@@ -1,0 +1,11 @@
+{
+"type": "FeatureCollection",
+"name": "fluxos_alocacao",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "id_setor": "291480205000032", "no_escola": "COLEGIO ESTADUAL PROFESSOR ADEUM HILARIO SAUER TEMPO INTEGRAL", "margem": "S", "pessoas_alocadas": 390.4, "distancia_caminhada_m": 1383.59, "distancia_reta_m": 1205.44 }, "geometry": { "type": "LineString", "coordinates": [ [ -39.27820144329273, -14.802040151361874 ], [ -39.27618, -14.81276 ] ] } },
+{ "type": "Feature", "properties": { "id_setor": "291480205000338", "no_escola": "COLEGIO ESTADUAL PROFESSOR ADEUM HILARIO SAUER TEMPO INTEGRAL", "margem": "S", "pessoas_alocadas": 281.58, "distancia_caminhada_m": 1436.73, "distancia_reta_m": 1317.66 }, "geometry": { "type": "LineString", "coordinates": [ [ -39.279418921062053, -14.801270950048007 ], [ -39.27618, -14.81276 ] ] } },
+{ "type": "Feature", "properties": { "id_setor": "291480205000432", "no_escola": "COLEGIO ESTADUAL PROFESSOR ADEUM HILARIO SAUER TEMPO INTEGRAL", "margem": "S", "pessoas_alocadas": 220.74, "distancia_caminhada_m": 1317.93, "distancia_reta_m": 1046.56 }, "geometry": { "type": "LineString", "coordinates": [ [ -39.285294517140571, -14.809457373682754 ], [ -39.27618, -14.81276 ] ] } },
+{ "type": "Feature", "properties": { "id_setor": "291480205000471", "no_escola": "COLEGIO ESTADUAL PROFESSOR ADEUM HILARIO SAUER TEMPO INTEGRAL", "margem": "S", "pessoas_alocadas": 53.28, "distancia_caminhada_m": 1241.19, "distancia_reta_m": 823.79 }, "geometry": { "type": "LineString", "coordinates": [ [ -39.281792346585753, -14.807694170087803 ], [ -39.27618, -14.81276 ] ] } }
+]
+}

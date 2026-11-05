@@ -1,0 +1,20 @@
+{
+  "k": 8,
+  "d_max": 4000.0,
+  "status": "Optimal",
+  "demanda_total": 7192.06,
+  "total_acolhidos": 5048.94,
+  "deficit_total": 2143.12,
+  "taxa_cobertura_pct": 70.2,
+  "abrigos_ativados_qtd": 8,
+  "abrigos_ativados_nomes": [
+    "ESCOLA MUNICIPAL VILA ANALIA",
+    "COOPERATIVA EDUCACIONAL DE ITABUNA",
+    "COLEGIO ESTADUAL PROFESSOR ADEUM HILARIO SAUER TEMPO INTEGRAL",
+    "COLEGIO ESTADUAL INACIO TOSTA FILHO TEMPO INTEGRAL",
+    "GRUPO ESCOLAR PROF EVERALDO CARDOSO",
+    "GRUPO ESCOLAR PROFESSOR ROBERTO SANTOS",
+    "ESCOLA MUNICIPAL FLAVIO JOSE SIMOES COSTA",
+    "ESCOLA MUNICIPAL LUIZ VIANA FILHO"
+  ]
+}
