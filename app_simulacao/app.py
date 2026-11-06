@@ -218,11 +218,11 @@ def listar_cenarios_disponiveis(caminho_dados: str):
 
 
 @st.cache_data(show_spinner=False)
-def carregar_dados_cenario(k: int, d_max: int):
+def carregar_dados_cenario_rapido(k: int, d_max: int):
     """
-    Carrega com cache do Streamlit os GeoJSONs e o resumo JSON do cenário especificado.
-    Retorna os GeoDataFrames convertidos e os dicionários GeoJSON pré-serializados
-    para evitar overhead de serialização repetitiva no Folium.
+    Leitura ultra-rápida (sub-milissegundo) utilizando json.load nativo.
+    Elimina o gargalo de leitura de shapefiles/geopackages do GeoPandas (C/GDAL/GEOS),
+    que levava mais de 600ms por clique no slider.
     """
     pasta_cenario = os.path.join(DATA_DIR, f"K{k}_D{d_max}")
 
@@ -234,46 +234,44 @@ def carregar_dados_cenario(k: int, d_max: int):
     if not (os.path.exists(arq_deficit) and os.path.exists(arq_abrigos)):
         return None, None, None, None
 
-    # Leitura dos GeoDataFrames
-    gdf_deficit = gpd.read_file(arq_deficit)
-    gdf_abrigos = gpd.read_file(arq_abrigos)
+    with open(arq_deficit, "r", encoding="utf-8") as f:
+        dict_deficit = json.load(f)
 
-    # Conversão de segurança para WGS84 caso algum arquivo não esteja
-    if gdf_deficit.crs and gdf_deficit.crs.to_string() != "EPSG:4326":
-        gdf_deficit = gdf_deficit.to_crs(epsg=4326)
+    with open(arq_abrigos, "r", encoding="utf-8") as f:
+        dict_abrigos = json.load(f)
 
-    if gdf_abrigos.crs and gdf_abrigos.crs.to_string() != "EPSG:4326":
-        gdf_abrigos = gdf_abrigos.to_crs(epsg=4326)
-
-    # Leitura dos fluxos (pode ser vazio se não houver conexão ativa)
+    dict_fluxos = None
     if os.path.exists(arq_fluxos):
-        gdf_fluxos = gpd.read_file(arq_fluxos)
-        if gdf_fluxos.crs and gdf_fluxos.crs.to_string() != "EPSG:4326":
-            gdf_fluxos = gdf_fluxos.to_crs(epsg=4326)
-    else:
-        gdf_fluxos = gpd.GeoDataFrame()
+        with open(arq_fluxos, "r", encoding="utf-8") as f:
+            dict_fluxos = json.load(f)
 
-    # Leitura dos KPIs consolidados
     kpis = {}
     if os.path.exists(arq_kpis):
         with open(arq_kpis, "r", encoding="utf-8") as f:
             kpis = json.load(f)
 
-    return gdf_deficit, gdf_abrigos, gdf_fluxos, kpis
+    # Pré-processar listas limpas para painel e mapa
+    abrigos_list = []
+    for feat in dict_abrigos.get("features", []):
+        p = feat.get("properties", {}).copy()
+        coords = feat.get("geometry", {}).get("coordinates", [0, 0])
+        p["lon"] = coords[0]
+        p["lat"] = coords[1]
+        abrigos_list.append(p)
 
+    setores_list = [feat.get("properties", {}) for feat in dict_deficit.get("features", [])]
+    top_deficit = sorted(setores_list, key=lambda x: x.get("deficit", 0), reverse=True)[:5]
 
-@st.cache_data(show_spinner=False)
-def obter_geojson_dict(k: int, d_max: int):
-    """
-    Cache dos dicionários GeoJSON (geojson_dict) para injeção direta no Folium.
-    Elimina a lentidão de conversão GeoDataFrame -> GeoJSON a cada interação do slider.
-    """
-    gdf_deficit, gdf_abrigos, gdf_fluxos, _ = carregar_dados_cenario(k, d_max)
-    if gdf_deficit is None:
-        return None, None, None
-    dict_deficit = json.loads(gdf_deficit.to_json())
-    dict_fluxos = json.loads(gdf_fluxos.to_json()) if not gdf_fluxos.empty else None
-    return dict_deficit, dict_fluxos
+    dados_cenario = {
+        "dict_deficit": dict_deficit,
+        "dict_abrigos": dict_abrigos,
+        "dict_fluxos": dict_fluxos,
+        "kpis": kpis,
+        "abrigos_list": abrigos_list,
+        "top_deficit": top_deficit,
+    }
+
+    return dados_cenario
 
 
 @st.cache_data(show_spinner=False)
@@ -374,26 +372,29 @@ with col_painel:
         unsafe_allow_html=True,
     )
 
-    # 5.4. Carregamento dos dados do cenário ativo
-    gdf_deficit, gdf_abrigos, gdf_fluxos, kpis = carregar_dados_cenario(sel_k, sel_dmax)
-    dict_deficit, dict_fluxos = obter_geojson_dict(sel_k, sel_dmax)
+    # 5.4. Carregamento ultra-rápido dos dados do cenário ativo (JSON nativo)
+    dados_cenario = carregar_dados_cenario_rapido(sel_k, sel_dmax)
 
-    if gdf_deficit is None or gdf_abrigos is None:
+    if dados_cenario is None:
         st.warning(f"Cenário K={sel_k}, d_max={sel_dmax}m não encontrado.")
         st.stop()
 
+    dict_deficit = dados_cenario["dict_deficit"]
+    dict_abrigos = dados_cenario["dict_abrigos"]
+    dict_fluxos = dados_cenario["dict_fluxos"]
+    kpis = dados_cenario["kpis"]
+    abrigos_list = dados_cenario["abrigos_list"]
+    top_deficit = dados_cenario["top_deficit"]
+
     taxa_cob = kpis.get("taxa_cobertura_pct", 0.0)
-    demanda_tot = kpis.get("demanda_total", float(gdf_deficit["demanda_Di"].sum()))
-    acolhidos_tot = kpis.get("total_acolhidos", float(gdf_deficit["atendidos"].sum()))
-    deficit_tot = kpis.get("deficit_total", float(gdf_deficit["deficit"].sum()))
-    abrigos_atv = kpis.get("abrigos_ativados_qtd", len(gdf_abrigos))
-    qtd_fluxos = len(gdf_fluxos) if not gdf_fluxos.empty else 0
+    demanda_tot = kpis.get("demanda_total", 0.0)
+    acolhidos_tot = kpis.get("total_acolhidos", 0.0)
+    deficit_tot = kpis.get("deficit_total", 0.0)
+    abrigos_atv = kpis.get("abrigos_ativados_qtd", len(abrigos_list))
+    qtd_fluxos = len(dict_fluxos.get("features", [])) if dict_fluxos else 0
 
     # Quantidade de abrigos com 100% de ocupação (capacidade esgotada)
-    if "taxa_ocupacao_pct" in gdf_abrigos.columns:
-        abrigos_lotados = int((gdf_abrigos["taxa_ocupacao_pct"] >= 99.99).sum())
-    else:
-        abrigos_lotados = 0
+    abrigos_lotados = sum(1 for a in abrigos_list if a.get("taxa_ocupacao_pct", 0.0) >= 99.99)
 
     # 5.5. Bloco de Estatísticas e Indicadores
     st.markdown(
@@ -454,7 +455,7 @@ with col_painel:
 
     # 5.6. Detalhamento dos Abrigos Ativados (Sem Emojis)
     with st.expander("Detalhe dos Abrigos Ativados", expanded=False):
-        for _, row in gdf_abrigos.iterrows():
+        for row in abrigos_list:
             nome = row.get("no_escola", "Escola")
             ocup = row.get("pessoas_abrigadas", 0.0)
             cap = row.get("capacidade_vagas", 0.0)
@@ -476,13 +477,12 @@ with col_painel:
 
     # 5.7. Detalhamento dos Setores com Maior Déficit (Sem Emojis)
     with st.expander("Setores com Maior Déficit", expanded=False):
-        df_top_def = gdf_deficit.sort_values(by="deficit", ascending=False).head(5)
-        for _, row in df_top_def.iterrows():
+        for row in top_deficit:
             st.markdown(
                 f"""
                 <div style="display: flex; justify-content: space-between; font-size: 0.78rem; padding: 4px 0; border-bottom: 1px dashed #334155; color: #CBD5E1;">
-                    <span>Setor <code>{row['id'][-5:]}</code> (Dem: {row['demanda_Di']:.0f})</span>
-                    <span style="color: #EF4444; font-weight: 700;">Déficit: {row['deficit']:.0f} hab ({row['cobertura_pct']:.0f}%)</span>
+                    <span>Setor <code>{str(row.get('id', ''))[-5:]}</code> (Dem: {row.get('demanda_Di', 0):.0f})</span>
+                    <span style="color: #EF4444; font-weight: 700;">Déficit: {row.get('deficit', 0):.0f} hab ({row.get('cobertura_pct', 0):.0f}%)</span>
                 </div>
                 """,
                 unsafe_allow_html=True,
@@ -564,7 +564,7 @@ with col_mapa:
     )
 
     camada_setores = folium.GeoJson(
-        dict_deficit if dict_deficit else gdf_deficit,
+        dict_deficit,
         name="Zonas de Risco (Setores Críticos)",
         style_function=estilo_setor,
         highlight_function=highlight_setor,
@@ -575,7 +575,7 @@ with col_mapa:
     # -----------------------------------------------------------------
     # 6.2. Camada de Fluxos de Alocação (Spider Diagram)
     # -----------------------------------------------------------------
-    if exibir_fluxos and not gdf_fluxos.empty:
+    if exibir_fluxos and dict_fluxos and dict_fluxos.get("features"):
         def estilo_fluxo(feature):
             return {
                 "color": "#0284c7",
@@ -584,28 +584,22 @@ with col_mapa:
                 "dashArray": "5, 5",
             }
 
-        # Campos e rótulos do tooltip de fluxos com prioridade para distância real a pé
-        campos_fluxo = ["id_setor", "no_escola", "pessoas_alocadas"]
-        aliases_fluxo = ["Origem (Setor):", "Destino (Abrigo):", "Pessoas Alocadas:"]
-
-        if "distancia_caminhada_m" in gdf_fluxos.columns:
-            campos_fluxo.append("distancia_caminhada_m")
-            aliases_fluxo.append("Distância a Pé na Rede (m):")
-
-        if "distancia_reta_m" in gdf_fluxos.columns:
-            campos_fluxo.append("distancia_reta_m")
-            aliases_fluxo.append("Distância em Linha Reta (m):")
-
         tooltip_fluxos = folium.GeoJsonTooltip(
-            fields=campos_fluxo,
-            aliases=aliases_fluxo,
+            fields=["id_setor", "no_escola", "pessoas_alocadas", "distancia_caminhada_m", "distancia_reta_m"],
+            aliases=[
+                "Origem (Setor):",
+                "Destino (Abrigo):",
+                "Pessoas Alocadas:",
+                "Distância a Pé na Rede (m):",
+                "Distância em Linha Reta (m):",
+            ],
             localize=True,
             sticky=True,
             style="background-color: #F8FAFC; font-size: 11px; padding: 8px; border-radius: 4px; color: #1E293B;",
         )
 
         camada_fluxos = folium.GeoJson(
-            dict_fluxos if dict_fluxos else gdf_fluxos,
+            dict_fluxos,
             name="Fluxos de Alocação (Rotas)",
             style_function=estilo_fluxo,
             tooltip=tooltip_fluxos,
@@ -615,23 +609,32 @@ with col_mapa:
     # -----------------------------------------------------------------
     # 6.3. Camada de Caminhos Percorridos nas Ruas (Rotas Reais)
     # -----------------------------------------------------------------
-    if exibir_rotas_ruas and not gdf_fluxos.empty:
+    if exibir_rotas_ruas and dict_fluxos and dict_fluxos.get("features"):
         rotas_cache = carregar_rotas_ruas_cache()
         features_rotas = []
-        for _, row in gdf_fluxos.iterrows():
-            chave = f"{str(row['id_setor']).replace('.0', '').strip()}|{str(row['no_escola']).strip()}"
+        for feat in dict_fluxos.get("features", []):
+            p = feat.get("properties", {})
+            chave = f"{str(p.get('id_setor')).replace('.0', '').strip()}|{str(p.get('no_escola')).strip()}"
             if chave in rotas_cache and len(rotas_cache[chave]) >= 2:
-                linha_geom = LineString(rotas_cache[chave])
                 features_rotas.append({
-                    "id_setor": row["id_setor"],
-                    "no_escola": row["no_escola"],
-                    "pessoas_alocadas": row.get("pessoas_alocadas", 0.0),
-                    "distancia_caminhada_m": row.get("distancia_caminhada_m", 0.0),
-                    "geometry": linha_geom,
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "LineString",
+                        "coordinates": rotas_cache[chave]
+                    },
+                    "properties": {
+                        "id_setor": p.get("id_setor"),
+                        "no_escola": p.get("no_escola"),
+                        "pessoas_alocadas": p.get("pessoas_alocadas", 0.0),
+                        "distancia_caminhada_m": p.get("distancia_caminhada_m", 0.0),
+                    }
                 })
 
         if features_rotas:
-            gdf_rotas_ruas = gpd.GeoDataFrame(features_rotas, crs="EPSG:4326")
+            geojson_rotas_ruas = {
+                "type": "FeatureCollection",
+                "features": features_rotas
+            }
 
             def estilo_rotas_ruas(feature):
                 return {
@@ -654,7 +657,7 @@ with col_mapa:
             )
 
             camada_rotas_ruas = folium.GeoJson(
-                gdf_rotas_ruas,
+                geojson_rotas_ruas,
                 name="Caminhos Percorridos a Pé (Ruas)",
                 style_function=estilo_rotas_ruas,
                 tooltip=tooltip_rotas,
@@ -666,12 +669,10 @@ with col_mapa:
     # -----------------------------------------------------------------
     grupo_abrigos = folium.FeatureGroup(name="Abrigos Selecionados", show=True)
 
-    for _, row in gdf_abrigos.iterrows():
-        geom = row.geometry
-        if geom and geom.geom_type == "Point":
-            lat = geom.y
-            lon = geom.x
-
+    for row in abrigos_list:
+        lat = row.get("lat")
+        lon = row.get("lon")
+        if lat and lon:
             nome_esc = row.get("no_escola", "Escola")
             ocup = row.get("pessoas_abrigadas", 0.0)
             cap = row.get("capacidade_vagas", row.get("in25_edu02", 0.0))
