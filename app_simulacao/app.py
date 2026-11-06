@@ -221,7 +221,8 @@ def listar_cenarios_disponiveis(caminho_dados: str):
 def carregar_dados_cenario(k: int, d_max: int):
     """
     Carrega com cache do Streamlit os GeoJSONs e o resumo JSON do cenário especificado.
-    Garante que os dados espaciais estejam em WGS84 (EPSG:4326) para o Folium.
+    Retorna os GeoDataFrames convertidos e os dicionários GeoJSON pré-serializados
+    para evitar overhead de serialização repetitiva no Folium.
     """
     pasta_cenario = os.path.join(DATA_DIR, f"K{k}_D{d_max}")
 
@@ -259,6 +260,20 @@ def carregar_dados_cenario(k: int, d_max: int):
             kpis = json.load(f)
 
     return gdf_deficit, gdf_abrigos, gdf_fluxos, kpis
+
+
+@st.cache_data(show_spinner=False)
+def obter_geojson_dict(k: int, d_max: int):
+    """
+    Cache dos dicionários GeoJSON (geojson_dict) para injeção direta no Folium.
+    Elimina a lentidão de conversão GeoDataFrame -> GeoJSON a cada interação do slider.
+    """
+    gdf_deficit, gdf_abrigos, gdf_fluxos, _ = carregar_dados_cenario(k, d_max)
+    if gdf_deficit is None:
+        return None, None, None
+    dict_deficit = json.loads(gdf_deficit.to_json())
+    dict_fluxos = json.loads(gdf_fluxos.to_json()) if not gdf_fluxos.empty else None
+    return dict_deficit, dict_fluxos
 
 
 @st.cache_data(show_spinner=False)
@@ -361,6 +376,7 @@ with col_painel:
 
     # 5.4. Carregamento dos dados do cenário ativo
     gdf_deficit, gdf_abrigos, gdf_fluxos, kpis = carregar_dados_cenario(sel_k, sel_dmax)
+    dict_deficit, dict_fluxos = obter_geojson_dict(sel_k, sel_dmax)
 
     if gdf_deficit is None or gdf_abrigos is None:
         st.warning(f"Cenário K={sel_k}, d_max={sel_dmax}m não encontrado.")
@@ -548,7 +564,7 @@ with col_mapa:
     )
 
     camada_setores = folium.GeoJson(
-        gdf_deficit,
+        dict_deficit if dict_deficit else gdf_deficit,
         name="Zonas de Risco (Setores Críticos)",
         style_function=estilo_setor,
         highlight_function=highlight_setor,
@@ -589,7 +605,7 @@ with col_mapa:
         )
 
         camada_fluxos = folium.GeoJson(
-            gdf_fluxos,
+            dict_fluxos if dict_fluxos else gdf_fluxos,
             name="Fluxos de Alocação (Rotas)",
             style_function=estilo_fluxo,
             tooltip=tooltip_fluxos,
